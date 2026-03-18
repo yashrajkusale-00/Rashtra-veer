@@ -209,3 +209,103 @@ Currently in **Design & Planning Phase**
 - ER Diagram ✔
 - UI Design (Figma) ✔
 - Development (In Progress)
+
+# Flutter + Firebase Setup Guide
+
+## 1. Install Flutter
+
+Download from:
+[Flutter](https://docs.flutter.dev/install) official docs
+
+Verify:
+
+```bash
+flutter doctor
+```
+
+## 2. Clone Project
+
+```bash
+git clone https://github.com/dhruvjagtap/Rashtra-veer.git
+cd rashtraveer
+```
+
+## 3. Setup Environment
+
+```bash
+flutter channel stable
+flutter upgrade
+flutter pub get
+```
+
+## 4. Connect Device
+
+- Enable **Developer Options** & **USB Debugging**
+- Check device:
+
+```bash
+flutter devices
+```
+
+## 5. Firebase Setup
+
+This project already uses Firebase
+
+No need to run:
+
+```bash
+flutterfire configure
+```
+
+Already included:
+
+- `firebase_options.dart`
+- `google-services.json`
+
+## 6. Run App
+
+```bash
+flutter run
+```
+
+## Troubleshooting
+
+### Device not detected
+
+```bash
+flutter doctor
+```
+
+### Build issues
+
+```bash
+flutter clean
+flutter pub get
+```
+
+### Firebase not working
+
+Share your SHA-1 with admin:
+
+```bash
+keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore -storepass android -keypass android
+```
+
+## Git Workflow
+
+```text
+main → production
+dev → development
+feature/* → features
+```
+
+## Notes
+
+- Don’t modify Firebase config files
+- Don’t run `flutterfire configure`
+
+## Done
+
+```bash
+flutter run
+```
