@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:rashtraveer/core/splash_screen.dart';
 import 'package:rashtraveer/feature/auth/presentation/login_screen.dart';
 import 'package:rashtraveer/feature/auth/presentation/register_screen.dart';
-import 'package:rashtraveer/feature/auth/presentation/verify_otp_scree.dart';
-import 'package:rashtraveer/feature/leaderboard/presentation/leaderboard_screen.dart';
-import 'package:rashtraveer/feature/onboarding/presentation/on_boarding_screen.dart';
-import 'firebase_options.dart';
+import 'package:rashtraveer/feature/home/presentation/home_screen.dart';
+import 'package:rashtraveer/feature/onboarding/presentation/on_boarding_screen1.dart';
+import 'package:rashtraveer/feature/onboarding/presentation/on_boarding_screen2.dart';
+import 'package:rashtraveer/feature/onboarding/presentation/on_boarding_screen3.dart';
+import 'package:rashtraveer/feature/onboarding/presentation/on_boarding_screen4.dart';
+import 'package:rashtraveer/feature/onboarding/presentation/on_boarding_screen5.dart';
+import 'package:rashtraveer/feature/onboarding/presentation/on_boarding_screen6.dart';
 
-// import 'package:rashtraveer/feature/auth/presentation/login_screen.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,17 +22,35 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const HomeScreen(),
+      title: 'Rashtraveer',
+      debugShowCheckedModeBanner: false,
+
+      initialRoute: SplashScreen.routeName,
+
+      routes: {
+        SplashScreen.routeName: (context) => const SplashScreen(),
+
+        LoginScreen.routeName: (context) => const LoginScreen(),
+
+        RegisterScreen.routeName: (context) => const RegisterScreen(),
+
+        OnBoardingScreen1.routeName: (context) => const OnBoardingScreen1(),
+
+        OnBoardingScreen2.routeName: (context) => const OnBoardingScreen2(),
+
+        OnBoardingScreen3.routeName: (context) => const OnBoardingScreen3(),
+
+        OnBoardingScreen4.routeName: (context) => const OnBoardingScreen4(),
+
+        OnBoardingScreen5.routeName: (context) => const OnBoardingScreen5(),
+
+        OnBoardingScreen6.routeName: (context) => const OnBoardingScreen6(),
+
+        HomeScreen.routeName: (context) => const HomeScreen(),
+      },
     );
   }
 }
-
-// keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore

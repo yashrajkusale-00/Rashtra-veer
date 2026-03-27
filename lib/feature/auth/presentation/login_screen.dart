@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rashtraveer/feature/auth/presentation/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
@@ -118,7 +119,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               const Text('Don\'t have an account?'),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RegisterScreen.routeName,
+                                  );
+                                },
                                 child: const Text(
                                   'Sign Up',
                                   style: TextStyle(color: Color(0xFF4C4A99)),

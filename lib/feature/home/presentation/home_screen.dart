@@ -10,7 +10,7 @@ import 'widgets/todays_task_section.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  static const String routeName = '/home';
+  static const routeName = '/home';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

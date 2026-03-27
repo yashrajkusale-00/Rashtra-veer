@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:rashtraveer/feature/auth/presentation/login_screen.dart';
+import 'package:rashtraveer/feature/onboarding/presentation/on_boarding_screen1.dart';
 
 class RegisterScreen extends StatefulWidget {
-  static const routeName = '/Register';
+  static const routeName = '/register';
   const RegisterScreen({super.key});
 
   @override
@@ -297,9 +299,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                               onPressed: (!_acceptTerms)
                                   ? null
-                                  : () {
+                                  : () async {
                                       if (_formKey.currentState!.validate()) {
-                                        // TOD:O: Implement registration logic
+                                        Navigator.pushReplacementNamed(
+                                          context,
+                                          OnBoardingScreen1.routeName,
+                                        );
                                       }
                                     },
                               child: const Text(
@@ -320,7 +325,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             children: [
                               const Text('Already have an account?'),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    LoginScreen.routeName,
+                                  );
+                                },
                                 child: const Text(
                                   'Sign In',
                                   style: TextStyle(color: Color(0xFF4C4A99)),
