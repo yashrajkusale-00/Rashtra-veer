@@ -71,7 +71,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     CircleAvatar(
                       radius: 48,
                       backgroundColor: _primary.withValues(alpha: 0.15),
-                      child: const Icon(Icons.person, color: _primary, size: 48),
+                      child: const Icon(
+                        Icons.person,
+                        color: _primary,
+                        size: 48,
+                      ),
                     ),
                     Positioned(
                       bottom: 0,
@@ -82,7 +86,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           color: _primary,
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(Icons.edit, color: Colors.white, size: 16),
+                        child: const Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                          size: 16,
+                        ),
                       ),
                     ),
                   ],
@@ -253,13 +261,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               await FirebaseAuth.instance.signOut();
               Navigator.of(context).pushNamedAndRemoveUntil(
                 LoginScreen.routeName,
-                    (route) => false,
+                (route) => false,
               );
             },
-            child: const Text(
-              'Log Out',
-              style: TextStyle(color: Colors.white),
-            ),
+            child: const Text('Log Out', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
@@ -335,7 +340,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           borderSide: const BorderSide(color: Color(0xFF7F7BFF)),
         ),
       ),
-      items: items.map((i) => DropdownMenuItem(value: i, child: Text(i))).toList(),
+      items: items
+          .map((i) => DropdownMenuItem(value: i, child: Text(i)))
+          .toList(),
       onChanged: onChanged,
     );
   }

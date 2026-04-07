@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rashtraveer/feature/video_library/presentation/video_library_screen.dart';
 import 'activity_summary_screen.dart';
 
 class ActivityScreen extends StatelessWidget {
@@ -54,10 +55,7 @@ class HeaderSection extends StatelessWidget {
               child: Center(
                 child: Text(
                   "Activity",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -144,16 +142,14 @@ class ProgressSection extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (_) => ActivitySummaryScreen(),
-              ),
+              MaterialPageRoute(builder: (_) => ActivitySummaryScreen()),
             );
           },
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 14),
             decoration: BoxDecoration(
-              color: ActivityScreen.primaryColor.withOpacity(0.15),
+              color: ActivityScreen.primaryColor.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(14),
             ),
             child: const Center(
@@ -208,8 +204,7 @@ class StatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(Icons.local_fire_department,
-            color: ActivityScreen.primaryColor),
+        Icon(Icons.local_fire_department, color: ActivityScreen.primaryColor),
         const SizedBox(height: 6),
         Text(title, style: const TextStyle(color: Colors.grey)),
         const SizedBox(height: 4),
@@ -247,6 +242,12 @@ class ActionPlanSection extends StatelessWidget {
           subtitle: "45 mins • Intermediate",
           icon: Icons.fitness_center,
           isCompleted: false,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const VideoLibraryScreen()),
+            );
+          },
         ),
         ActionCard(
           title: "Keto Meal Plan",
@@ -270,6 +271,7 @@ class ActionCard extends StatelessWidget {
   final String subtitle;
   final IconData icon;
   final bool isCompleted;
+  final VoidCallback? onTap;
 
   const ActionCard({
     super.key,
@@ -277,39 +279,49 @@ class ActionCard extends StatelessWidget {
     required this.subtitle,
     required this.icon,
     required this.isCompleted,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(
-        children: [
-          CircleAvatar(
-            backgroundColor: ActivityScreen.primaryColor.withOpacity(0.1),
-            child: Icon(icon, color: ActivityScreen.primaryColor),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
-                Text(subtitle,
-                    style: const TextStyle(color: Colors.grey, fontSize: 12)),
-              ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: ActivityScreen.primaryColor.withValues(
+                alpha: 0.1,
+              ),
+              child: Icon(icon, color: ActivityScreen.primaryColor),
             ),
-          ),
-          isCompleted
-              ? const Icon(Icons.check_circle, color: Colors.green)
-              : const Icon(Icons.radio_button_unchecked, color: Colors.grey),
-        ],
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(color: Colors.grey, fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            isCompleted
+                ? const Icon(Icons.check_circle, color: Colors.green)
+                : const Icon(Icons.radio_button_unchecked, color: Colors.grey),
+          ],
+        ),
       ),
     );
   }
@@ -335,8 +347,10 @@ class WeeklyConsistencySection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Weekly Consistency",
-              style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text(
+            "Weekly Consistency",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -350,17 +364,15 @@ class WeeklyConsistencySection extends StatelessWidget {
                         ? ActivityScreen.primaryColor
                         : Colors.grey.shade300,
                     child: isActive
-                        ? const Icon(Icons.check,
-                            size: 16, color: Colors.white)
+                        ? const Icon(Icons.check, size: 16, color: Colors.white)
                         : null,
                   ),
                   const SizedBox(height: 6),
-                  Text(days[index],
-                      style: const TextStyle(fontSize: 12)),
+                  Text(days[index], style: const TextStyle(fontSize: 12)),
                 ],
               );
             }),
-          )
+          ),
         ],
       ),
     );
@@ -406,7 +418,7 @@ class RewardCard extends StatelessWidget {
               ],
             ),
           ),
-          Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16)
+          Icon(Icons.arrow_forward_ios, color: Colors.white, size: 16),
         ],
       ),
     );

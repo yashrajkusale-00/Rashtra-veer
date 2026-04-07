@@ -16,18 +16,18 @@ class ActivitySummaryScreen extends StatelessWidget {
             const SummaryHeader(),
             const SizedBox(height: 16),
             const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: StatsCardsSection(),
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: StatsCardsSection(),
             ),
             const SizedBox(height: 16),
             const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: WorkoutChartCard(),
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: WorkoutChartCard(),
             ),
             const SizedBox(height: 20),
             const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: ShareButton(),
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: ShareButton(),
             ),
           ],
         ),
@@ -45,10 +45,7 @@ class SummaryHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(
-        top: 16,
-        bottom: 24,
-      ), 
+      padding: const EdgeInsets.only(top: 16, bottom: 24),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xFF7F7BFF), Color(0xFF5A54E8)],
@@ -137,7 +134,6 @@ class StatsCardsSection extends StatelessWidget {
   }
 }
 
-
 class StatCard extends StatelessWidget {
   final IconData icon;
   final String value;
@@ -165,10 +161,10 @@ class StatCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
           boxShadow: [
             BoxShadow(
-              color: color.withOpacity(0.3),
+              color: color.withValues(alpha: 0.3),
               blurRadius: 8,
               offset: const Offset(0, 4),
-            )
+            ),
           ],
         ),
         child: Column(
@@ -193,10 +189,7 @@ class StatCard extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               label,
-              style: const TextStyle(
-                color: Colors.white70,
-                fontSize: 12,
-              ),
+              style: const TextStyle(color: Colors.white70, fontSize: 12),
             ),
           ],
         ),
@@ -204,7 +197,6 @@ class StatCard extends StatelessWidget {
     );
   }
 }
-
 
 //////////////////////////////////////////////////////////////
 /// CHART
@@ -226,10 +218,7 @@ class WorkoutChartCard extends StatelessWidget {
         children: [
           const Text(
             "Workout Intensity",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           const SizedBox(height: 12),
 
@@ -253,7 +242,7 @@ class GraphPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     ///  GRID LINES (background)
     final gridPaint = Paint()
-      ..color = Colors.grey.withOpacity(0.2)
+      ..color = Colors.grey.withValues(alpha: 0.2)
       ..strokeWidth = 1;
 
     for (int i = 1; i <= 4; i++) {
@@ -308,9 +297,9 @@ class ShareButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Shared successfully!!")),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text("Shared successfully!!")));
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16),

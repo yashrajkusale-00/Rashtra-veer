@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rashtraveer/feature/main_application/chat/presentation/groups/group_members_screen.dart';
 
 /// A fully-featured 1-on-1 chat window.
 /// Replace the static [_mockMessages] list with real data / a BLoC/provider
@@ -9,11 +10,13 @@ class ChatScreen extends StatefulWidget {
     required this.title,
     this.avatarText,
     this.subtitle,
+    this.isGroup = false,
   });
 
   final String title;
   final String? avatarText;
   final String? subtitle; // e.g. "Online" or "Coach · NCA certified"
+  final bool isGroup;
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -24,8 +27,8 @@ class _ChatScreenState extends State<ChatScreen> {
   static const Color _primary = Color(0xFF5F55E7);
   static const Color _primaryLight = Color(0xFFE9E7FF);
   static const Color _screenBg = Color(0xFFFAFAF8);
-  static const Color _bubbleSent = Color(0xFF5F55E7);
-  static const Color _bubbleReceived = Color(0xFFEFEFEF);
+  // static const Color _bubbleSent = Color(0xFF5F55E7);
+  // static const Color _bubbleReceived = Color(0xFFEFEFEF);
   static const Color _textDark = Color(0xFF1E1E2F);
 
   // ── State ─────────────────────────────────────────────────────────────────
@@ -46,7 +49,8 @@ class _ChatScreenState extends State<ChatScreen> {
       time: '10:04 AM',
     ),
     _Message(
-      text: 'Great progress! Remember to stretch for at least 10 minutes after.',
+      text:
+          'Great progress! Remember to stretch for at least 10 minutes after.',
       isMine: false,
       time: '10:05 AM',
     ),
@@ -57,15 +61,11 @@ class _ChatScreenState extends State<ChatScreen> {
     ),
     _Message(
       text:
-      'Let\'s keep it at 5 km for the rest of this week and focus on pace instead. Aim for under 6 min/km.',
+          'Let\'s keep it at 5 km for the rest of this week and focus on pace instead. Aim for under 6 min/km.',
       isMine: false,
       time: '10:08 AM',
     ),
-    _Message(
-      text: 'Sounds like a plan 👍',
-      isMine: true,
-      time: '10:09 AM',
-    ),
+    _Message(text: 'Sounds like a plan 👍', isMine: true, time: '10:09 AM'),
   ];
 
   @override
@@ -93,11 +93,7 @@ class _ChatScreenState extends State<ChatScreen> {
     if (text.isEmpty) return;
 
     setState(() {
-      _messages.add(_Message(
-        text: text,
-        isMine: true,
-        time: _nowLabel(),
-      ));
+      _messages.add(_Message(text: text, isMine: true, time: _nowLabel()));
       _inputController.clear();
     });
 
@@ -186,6 +182,19 @@ class _ChatScreenState extends State<ChatScreen> {
             color: _primary,
             onPressed: () {},
           ),
+
+          if (widget.isGroup)
+            IconButton(
+              icon: const Icon(Icons.info_outline), // or more_vert
+              color: _textDark,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const GroupMembersScreen()),
+                );
+              },
+            ),
+
           IconButton(
             icon: const Icon(Icons.more_vert_rounded),
             color: _textDark,
@@ -198,10 +207,7 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: [
           // Divider
-          Container(
-            height: 1,
-            color: Colors.black.withValues(alpha: 0.06),
-          ),
+          Container(height: 1, color: Colors.black.withValues(alpha: 0.06)),
 
           // Message list
           Expanded(
@@ -213,10 +219,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 final msg = _messages[index];
                 final prevIsMine =
                     index > 0 && _messages[index - 1].isMine == msg.isMine;
-                return _ChatBubble(
-                  message: msg,
-                  groupWithPrev: prevIsMine,
-                );
+                return _ChatBubble(message: msg, groupWithPrev: prevIsMine);
               },
             ),
           ),
@@ -242,10 +245,7 @@ class _ChatScreenState extends State<ChatScreen> {
 // ── Bubble ─────────────────────────────────────────────────────────────────
 
 class _ChatBubble extends StatelessWidget {
-  const _ChatBubble({
-    required this.message,
-    this.groupWithPrev = false,
-  });
+  const _ChatBubble({required this.message, this.groupWithPrev = false});
 
   static const Color _bubbleSent = Color(0xFF5F55E7);
   static const Color _bubbleReceived = Color(0xFFEFEFEF);
@@ -261,14 +261,16 @@ class _ChatBubble extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: groupWithPrev ? 4 : 12),
       child: Row(
-        mainAxisAlignment:
-        isMine ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: isMine
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           if (!isMine) const SizedBox(width: 8),
           Column(
-            crossAxisAlignment:
-            isMine ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            crossAxisAlignment: isMine
+                ? CrossAxisAlignment.end
+                : CrossAxisAlignment.start,
             children: [
               ConstrainedBox(
                 constraints: BoxConstraints(
@@ -391,12 +393,14 @@ class _InputBar extends StatelessWidget {
                   maxLines: null,
                   keyboardType: TextInputType.multiline,
                   textCapitalization: TextCapitalization.sentences,
-                  style: theme.textTheme.bodyMedium
-                      ?.copyWith(color: const Color(0xFF1E1E2F)),
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: const Color(0xFF1E1E2F),
+                  ),
                   decoration: InputDecoration(
                     hintText: 'Type a message…',
-                    hintStyle: theme.textTheme.bodyMedium
-                        ?.copyWith(color: Colors.black38),
+                    hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                      color: Colors.black38,
+                    ),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -417,18 +421,18 @@ class _InputBar extends StatelessWidget {
                 ScaleTransition(scale: anim, child: child),
             child: showSendButton
                 ? _CircleAction(
-              key: const ValueKey('send'),
-              icon: Icons.send_rounded,
-              color: _primary,
-              onTap: onSend,
-            )
+                    key: const ValueKey('send'),
+                    icon: Icons.send_rounded,
+                    color: _primary,
+                    onTap: onSend,
+                  )
                 : _CircleAction(
-              key: const ValueKey('mic'),
-              icon: Icons.mic_none_rounded,
-              color: Colors.black45,
-              filled: false,
-              onTap: () {},
-            ),
+                    key: const ValueKey('mic'),
+                    icon: Icons.mic_none_rounded,
+                    color: Colors.black45,
+                    filled: false,
+                    onTap: () {},
+                  ),
           ),
         ],
       ),
@@ -461,8 +465,7 @@ class _CircleAction extends StatelessWidget {
           shape: BoxShape.circle,
           color: filled ? color : Colors.transparent,
         ),
-        child: Icon(icon,
-            color: filled ? Colors.white : color, size: 22),
+        child: Icon(icon, color: filled ? Colors.white : color, size: 22),
       ),
     );
   }

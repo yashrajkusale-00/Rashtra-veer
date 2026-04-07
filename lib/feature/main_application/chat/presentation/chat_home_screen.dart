@@ -121,6 +121,7 @@ class ChatHomeScreen extends StatelessWidget {
                           builder: (_) => ChatScreen(
                             title: item.name,
                             subtitle: 'Online',
+                            isGroup: item.name == "Weekend Warriors",
                           ),
                         ),
                       );
