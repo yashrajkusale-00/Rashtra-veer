@@ -296,8 +296,8 @@ keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore -sto
 ### Overview
 
 - **Total Screens:** 27
-- **Completed:** 17
-- **Pending:** 10
+- **Completed:** 24
+- **Pending:** 3
 
 ---
 
@@ -325,6 +325,8 @@ keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore -sto
 - [x] Leaderboard Screen
 - [x] Activity Screen
 - [x] Chat Home Screen
+- [x] Messaging Screen
+- [x] Resources Screen
 
 ### Content Module
 
@@ -335,32 +337,30 @@ keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore -sto
 
 - [x] Group List Screen
 
+### Activity Module
+
+- [x] Activity Tracking (Live GPS) (Not planned yer)
+- [x] Activity Summary Screen
+
+### Gamification
+
+- [x] Badges / Achievements Screen
+
+### Profile & Settings
+
+- [x] Edit Profile Screen
+- [x] Subscription / Payment Screen
+
 ---
 
 ## Pending Screens
-
-### Main Application (Core Navigation)
-
-- [ ] Messaging Screen
-- [ ] Resources Screen
-
-### Activity Module
-
-- [ ] Activity Tracking (Live GPS) (Not planned yer)
-- [ ] Activity Summary Screen
 
 ### Community Module
 
 - [ ] Create Group Screen
 
-### Gamification
-
-- [ ] Badges / Achievements Screen
-
 ### Profile & Settings
 
-- [ ] Edit Profile Screen
-- [ ] Subscription / Payment Screen
 - [ ] Certificate Upload / View Screen
 - [ ] Settings Screen
 
