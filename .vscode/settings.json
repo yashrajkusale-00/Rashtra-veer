@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "D:/hp/Internship_Project_Rashtraveer/Rashtra-veer/windows/flutter"
+    "cmake.sourceDirectory": "D:/hp/Internship_Project_Rashtraveer/Rashtra-veer/windows/flutter",
+    "dart.flutterSdkPath": "E:\\flutter"
 }

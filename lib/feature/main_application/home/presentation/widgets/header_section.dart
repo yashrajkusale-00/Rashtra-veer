@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../profile/presentation/edit_profile_screen.dart';
+import 'package:rashtraveer/feature/settings/presentation/settings_screen.dart';
+
+// import '../../../../profile/presentation/edit_profile_screen.dart';
 import 'stats_card.dart';
 
 /// Header section with gradient background, greeting, user name, and stats card.
@@ -67,7 +69,7 @@ class HeaderSection extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, EditProfileScreen.routeName),
+                    onTap: () => Navigator.pushNamed(context, SettingsScreen.routeName),
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(

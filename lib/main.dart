@@ -22,6 +22,8 @@ import 'feature/onboarding/presentation/payment_screen.dart';
 import 'feature/profile/presentation/edit_profile_screen.dart';
 import 'firebase_options.dart';
 
+import 'package:rashtraveer/feature/settings/presentation/settings_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -56,6 +58,7 @@ class MyApp extends StatelessWidget {
         EditProfileScreen.routeName: (context) => const EditProfileScreen(),
         BadgesScreen.routeName: (context) => const BadgesScreen(),
         MainAppScreen.routeName: (context) => const MainAppScreen(),
+        SettingsScreen.routeName: (context) => const SettingsScreen(),
 
         PaymentScreen.routeName: (context) {
           final args = ModalRoute.of(context)!.settings.arguments as Map;
@@ -64,6 +67,7 @@ class MyApp extends StatelessWidget {
             planPrice: args['planPrice'],
           );
         },
+        
       },
     );
   }
