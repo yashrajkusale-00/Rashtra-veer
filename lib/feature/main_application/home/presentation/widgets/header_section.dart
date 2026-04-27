@@ -22,7 +22,7 @@ class HeaderSection extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF7F7BFF), Color(0xFF9B97FF), Color(0xFF7F7BFF)],
+          colors: [Color(0xFF6A66FF), Color(0xFF6A66FF), Color(0xFF6A66FF)],
         ),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(24),

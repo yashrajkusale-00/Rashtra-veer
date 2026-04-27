@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rashtraveer/feature/profile/presentation/edit_profile_screen.dart';
 import 'package:rashtraveer/feature/settings/presentation/help_support_screen.dart';
+import 'package:rashtraveer/feature/settings/presentation/renewal_payment_screen.dart';
 import 'package:rashtraveer/feature/settings/presentation/widgets/setting_item.dart';
 import 'package:rashtraveer/feature/settings/presentation/widgets/logout_tile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -61,11 +62,13 @@ class SettingsScreen extends StatelessWidget {
             },
           ),
 
-          const SettingItem(
+          SettingItem(
             icon: Icons.payment,
             title: "Subscription & Payments",
             subtitle: "Plans, transactions",
-            onTap: null,
+            onTap: () {
+              Navigator.pushNamed(context, RenewalPaymentScreen.routeName);
+            },
           ),
 
           SettingItem(

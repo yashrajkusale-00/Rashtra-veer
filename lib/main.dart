@@ -26,6 +26,7 @@ import 'package:rashtraveer/feature/settings/presentation/help_support_screen.da
 import 'package:rashtraveer/feature/settings/presentation/profile_screen.dart';
 import 'package:rashtraveer/feature/settings/presentation/activity_settings_screen.dart';
 import 'package:rashtraveer/feature/settings/presentation/health_preferences_screen.dart';
+import 'package:rashtraveer/feature/settings/presentation/renewal_payment_screen.dart';
 
 
 void main() async {
@@ -68,7 +69,7 @@ class MyApp extends StatelessWidget {
         ProfileScreen.routeName: (context) => const ProfileScreen(),
         ActivitySettingsScreen.routeName: (context) => const ActivitySettingsScreen(),
         HealthPreferencesScreen.routeName: (context) => const HealthPreferencesScreen(),
-
+        RenewalPaymentScreen.routeName:(context) =>const RenewalPaymentScreen(),
         PaymentScreen.routeName: (context) {
           final args = ModalRoute.of(context)!.settings.arguments as Map;
           return PaymentScreen(
